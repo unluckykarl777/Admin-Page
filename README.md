@@ -17,7 +17,7 @@ Vercel은 관리자 페이지만 올립니다. Figma로 만든 쇼핑몰과 관�
 
 ## GA4 방문자 보고서
 
-`supabase/functions/ga4-visits/index.ts`는 GA4 보고서를 읽는 Supabase Edge Function입니다. 이 함수는 Vercel에 배포되지 않습니다. Supabase에 함수 배포와 `GA4_PROPERTY_ID`, `GA4_SERVICE_ACCOUNT_JSON` 비밀 설정을 별도로 해야 합니다. Google 서비스 계정 JSON은 Git 저장소에 넣지 마세요.
+`supabase/functions/ga4-visits/index.ts`는 GA4 보고서를 읽는 Supabase Edge Function입니다. 이 함수는 Vercel에 배포되지 않습니다. Supabase에 함수를 배포하고 `GA4_SERVICE_ACCOUNT_JSON` 비밀 설정을 해야 합니다. GA4 속성 ID `557079294`는 함수 코드에 기본값으로 들어 있습니다. Google 서비스 계정 JSON은 Git 저장소에 넣지 마세요.
 
 ## 쿠폰·적립금·SEO 관리자 기능
 

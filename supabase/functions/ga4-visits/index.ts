@@ -1,5 +1,6 @@
 // Secure GA4 read endpoint for the PPiyo admin dashboard.
-// Required Supabase secrets: GA4_PROPERTY_ID, GA4_SERVICE_ACCOUNT_JSON
+// Required Supabase secret: GA4_SERVICE_ACCOUNT_JSON
+// GA4_PROPERTY_ID can override this public numeric property ID if needed.
 // The service account JSON is never sent to the browser.
 
 const corsHeaders = {
@@ -101,7 +102,7 @@ Deno.serve(async (request) => {
     const admins = adminResponse.ok ? await adminResponse.json() : [];
     if (!admins.length) return json({ error: true, message: "관리자 권한이 확인되지 않았어요." }, 403);
 
-    const propertyId = Deno.env.get("GA4_PROPERTY_ID") || "";
+    const propertyId = Deno.env.get("GA4_PROPERTY_ID") || "557079294";
     const serviceAccountText = Deno.env.get("GA4_SERVICE_ACCOUNT_JSON") || "";
     if (!/^\d+$/.test(propertyId) || !serviceAccountText) {
       return json({ error: true, message: "GA4 속성 ID와 읽기 계정 설정이 필요해요." }, 503);
