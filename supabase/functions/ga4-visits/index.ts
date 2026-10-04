@@ -112,7 +112,14 @@ Deno.serve(async (request) => {
       dateRanges: [{ startDate: "today", endDate: "today" }],
       metrics: [{ name: "activeUsers" }, { name: "screenPageViews" }],
     };
-    const [overall, goods] = await Promise.all([
+    const eventReport = (eventName: string) => runReport(accessToken, propertyId, {
+      dateRanges: [{ startDate: "today", endDate: "today" }],
+      metrics: [{ name: "eventCount" }],
+      dimensionFilter: {
+        filter: { fieldName: "eventName", stringFilter: { matchType: "EXACT", value: eventName } },
+      },
+    });
+    const [overall, goods, cartEvents, purchaseEvents] = await Promise.all([
       runReport(accessToken, propertyId, baseReport),
       runReport(accessToken, propertyId, {
         ...baseReport,
@@ -123,6 +130,8 @@ Deno.serve(async (request) => {
           },
         },
       }),
+      eventReport("add_to_cart"),
+      eventReport("purchase"),
     ]);
     const overallValues = overall.rows?.[0]?.metricValues || [];
     const goodsValues = goods.rows?.[0]?.metricValues || [];
@@ -130,6 +139,8 @@ Deno.serve(async (request) => {
       activeUsers: Number(overallValues[0]?.value || 0),
       pageViews: Number(overallValues[1]?.value || 0),
       goodsPageViews: Number(goodsValues[1]?.value || 0),
+      addToCart: Number(cartEvents.rows?.[0]?.metricValues?.[0]?.value || 0),
+      purchases: Number(purchaseEvents.rows?.[0]?.metricValues?.[0]?.value || 0),
       date: new Date().toISOString().slice(0, 10),
     });
   } catch (error) {
