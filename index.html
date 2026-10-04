@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>삐요스튜디오 관리자</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap');
+    :root{--ink:#22251f;--muted:#83877e;--line:#e9ebe5;--paper:#f8f9f6;--white:#fff;--green:#4d6957;--pale:#eaf0e9;--orange:#e59369;--yellow:#f6edd8;--shadow:0 12px 34px rgba(37,45,35,.055)}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:14px 'DM Sans','Noto Sans KR',sans-serif}button,input,select{font:inherit}button{cursor:pointer;border:0;background:none;color:inherit}.shell{display:flex;min-height:100vh}.sidebar{width:248px;background:#fff;border-right:1px solid var(--line);padding:26px 17px;position:fixed;inset:0 auto 0 0;display:flex;flex-direction:column;z-index:5}.brand{padding:3px 12px 30px;display:flex;align-items:center;gap:11px}.mark{width:36px;height:36px;border-radius:50%;background:#f4dfd2;color:#a55f43;display:grid;place-items:center;font-size:19px}.brand b{font-size:14px;letter-spacing:-.3px}.brand small{display:block;color:#9b9d96;font-size:10px;margin-top:3px;letter-spacing:1.4px}.group-title{font-size:10px;font-weight:700;color:#a4a79f;letter-spacing:1.2px;padding:16px 13px 8px}.nav{display:flex;flex-direction:column;gap:3px}.nav button{padding:11px 13px;border-radius:9px;display:flex;align-items:center;gap:12px;text-align:left;color:#72776e;font-size:13px}.nav button .ico{width:18px;text-align:center;font-size:16px}.nav button:hover,.nav button.active{background:#eef3ed;color:#355943;font-weight:600}.nav .badge{margin-left:auto;border-radius:12px;background:#f9e8dc;color:#b56d4d;font-size:10px;padding:3px 7px}.side-bottom{margin-top:auto;border-top:1px solid var(--line);padding:16px 7px 0;display:flex;gap:10px;align-items:center}.avatar{width:34px;height:34px;border-radius:50%;background:#e6ebe2;color:#4c654f;display:grid;place-items:center;font-weight:700}.side-bottom b{font-size:12px}.side-bottom small{display:block;color:var(--muted);font-size:10px;margin-top:4px}.main{margin-left:248px;width:calc(100% - 248px)}.topbar{height:68px;background:rgba(255,255,255,.86);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 42px;position:sticky;top:0;z-index:3;backdrop-filter:blur(12px)}.crumb{color:#989b94;font-size:12px}.crumb b{color:#2c3029;font-weight:600}.right-tools{display:flex;align-items:center;gap:15px}.site-select{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 11px;color:#555b52;font-size:11px}.icon-btn{font-size:17px;color:#777c73}.content{max-width:1250px;padding:36px 42px 70px;margin:0 auto}.eyebrow{color:#819082;font-size:10px;letter-spacing:1.6px;font-weight:700}.heading{display:flex;justify-content:space-between;align-items:flex-end;margin:8px 0 25px}.heading h1{font-size:28px;letter-spacing:-1.1px;margin:0 0 7px}.heading p{margin:0;color:var(--muted);font-size:12px}.primary{border-radius:8px;background:#405f4b;color:white;padding:10px 15px;font-size:11px;font-weight:600}.outline{border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px 12px;font-size:11px;color:#545b52}.banner{background:#f0f4ee;border:1px solid #e5ece2;border-radius:12px;padding:14px 17px;display:flex;gap:13px;align-items:center;margin-bottom:22px}.banner-icon{font-size:19px}.banner p{margin:0;color:#657467;font-size:11px;line-height:1.7;flex:1}.banner b{color:#344c38}.banner button{color:#57745d;font-size:11px;font-weight:600}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:25px}.stat,.card{background:#fff;border:1px solid #edeee9;border-radius:12px;box-shadow:var(--shadow)}.stat{padding:18px 19px}.stat-top{display:flex;justify-content:space-between;color:#8b9087;font-size:11px}.stat-icon{font-size:15px}.stat-value{font-size:24px;font-weight:600;letter-spacing:-1px;margin:14px 0 8px}.stat-foot{font-size:10px;color:#999d95}.up{color:#63836a;font-weight:600}.layout{display:grid;grid-template-columns:1.45fr 1fr;gap:17px}.card{padding:20px 21px;margin-bottom:17px}.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:17px}.card-head h2{font-size:14px;margin:0;letter-spacing:-.3px}.card-head span{color:#9b9e97;font-size:10px}.small-link{color:#54745c;font-size:10px;font-weight:600}.table{width:100%;border-collapse:collapse;text-align:left}.table th{font-size:10px;color:#a0a39d;font-weight:500;padding:0 8px 11px;border-bottom:1px solid #eff0ec}.table td{padding:12px 8px;border-bottom:1px solid #f2f3f0;font-size:11px}.table tr:last-child td{border-bottom:0}.product{display:flex;align-items:center;gap:10px}.thumb{width:34px;height:36px;background:#f2e7dc;border-radius:6px;display:grid;place-items:center;font-size:18px}.thumb.t2{background:#e9ede5}.thumb.t3{background:#f1e8e8}.product b{font-size:11px;font-weight:600}.product small{display:block;font-size:9px;color:#a2a49d;margin-top:4px}.state{padding:5px 8px;border-radius:10px;font-size:9px;white-space:nowrap}.state.green{background:#edf4ec;color:#5c7d61}.state.orange{background:#fcf0e9;color:#bd7653}.state.gray{background:#f0f1ee;color:#898e85}.orders th:nth-child(2),.orders td:nth-child(2){text-align:right}.orders th:nth-child(3),.orders td:nth-child(3){text-align:right}.order-id{color:#65766a;font-weight:600}.subtle{color:#92968e;font-size:10px}.attention{background:#fcf9f1;border:1px solid #f3ead5;border-radius:10px;padding:13px;display:flex;gap:11px;margin:9px 0}.attention .a-icon{color:#c5954e}.attention b{font-size:11px}.attention p{font-size:10px;color:#888a81;margin:5px 0 0;line-height:1.55}.checklist{display:flex;flex-direction:column;gap:13px}.check{display:flex;align-items:center;gap:10px;font-size:11px;color:#656b61}.dot{height:19px;width:19px;border-radius:50%;background:#edf3eb;color:#66816a;display:grid;place-items:center;font-size:10px}.dot.todo{background:#f7eee3;color:#c48c54}.tools{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tool{border:1px solid #eef0ea;border-radius:9px;padding:12px;display:flex;gap:10px;align-items:center}.tool-ico{height:32px;width:32px;border-radius:8px;background:#f2f4ef;display:grid;place-items:center;font-size:14px}.tool b{font-size:10px}.tool small{display:block;font-size:9px;color:#9a9d95;margin-top:4px}.tag{margin-left:auto;font-size:8px;color:#628068;background:#eef4eb;padding:4px 6px;border-radius:8px}.section{display:none}.section.active{display:block}.guide-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.guide{padding:18px;background:#fff;border:1px solid #edeee9;border-radius:12px;box-shadow:var(--shadow)}.guide .n{font-size:10px;color:#91a091;letter-spacing:1px}.guide h3{font-size:14px;margin:11px 0 7px}.guide p{font-size:11px;line-height:1.65;color:#858a81;margin:0 0 13px}.seo-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.form-row{margin:13px 0}.form-row label{display:block;font-size:10px;color:#81867d;margin-bottom:7px}.field{width:100%;border:1px solid #e8ebe5;border-radius:7px;padding:10px;color:#495047;background:white;font-size:11px}.switch-row{padding:12px 0;border-bottom:1px solid #f0f1ed;display:flex;justify-content:space-between;align-items:center;font-size:11px}.switch{width:32px;height:18px;background:#5f8066;border-radius:12px;position:relative}.switch:after{content:'';position:absolute;right:2px;top:2px;width:14px;height:14px;background:white;border-radius:50%}.mobile-head{display:none}
+    @media(max-width:1000px){.sidebar{width:210px}.main{margin-left:210px;width:calc(100% - 210px)}.content{padding:28px 24px}.topbar{padding:0 24px}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:720px){.sidebar{width:62px;padding:15px 8px}.brand{padding:3px 4px 22px}.brand>div:last-child,.group-title,.nav .label,.nav .badge,.side-bottom>div:last-child{display:none}.nav button{justify-content:center;padding:12px 0}.nav button .ico{font-size:18px}.side-bottom{padding:14px 0;justify-content:center}.main{margin-left:62px;width:calc(100% - 62px)}.topbar{height:58px;padding:0 15px}.content{padding:24px 15px}.heading{align-items:flex-start;gap:12px;flex-direction:column}.heading h1{font-size:24px}.stats{gap:8px}.stat{padding:13px}.stat-value{font-size:20px}.layout,.seo-grid{grid-template-columns:1fr}.guide-grid{grid-template-columns:1fr}.banner{align-items:flex-start}.banner button{display:none}.table th,.table td{padding-left:4px;padding-right:4px;font-size:9px}.product{gap:6px}.thumb{width:27px;height:30px}.right-tools{gap:8px}.site-select{max-width:150px;font-size:9px}}
+    /* PPiyo visual system: burgundy, ink and warm paper, echoing the storefront. */
+    :root{--ink:#211e1e;--muted:#827c79;--line:#e9e3df;--paper:#faf8f6;--white:#fff;--green:#9b2525;--pale:#fbefee;--orange:#b97654;--yellow:#fbf5ea;--shadow:0 5px 18px rgba(35,24,23,.045)}
+    body{font-family:'DM Sans','Noto Sans KR',sans-serif;background:#faf9f7}
+    .sidebar{width:232px;padding:23px 15px;background:#fff;border-right:1px solid #e7e2df}
+    .brand{padding:3px 11px 25px}.mark{border-radius:5px;background:#f8e9e7;color:#9b2525}
+    .brand b{font-size:15px;letter-spacing:-.5px}.brand small{letter-spacing:1.2px;color:#a69e9a}
+    .group-title{color:#aaa19d;font-size:9px;letter-spacing:1.15px;padding:17px 12px 7px}
+    .nav{gap:2px}.nav button{border-radius:5px;padding:10px 12px;color:#68615e;font-size:12px}
+    .nav button:hover,.nav button.active{background:#fbefee;color:#922323;font-weight:700}
+    .nav button.active{box-shadow:inset 2px 0 #9b2525}
+    .nav .badge{background:#f8e4e2;color:#9b2525;border-radius:3px}
+    .side-bottom{border-color:#eee9e6}.avatar{border-radius:5px;background:#f8e9e7;color:#9b2525}
+    .main{margin-left:232px;width:calc(100% - 232px)}
+    .topbar{height:58px;background:#211f20;color:#fff;border:0;padding:0 36px}
+    .crumb{color:#c2bcba;font-size:11px}.crumb b{color:#fff}
+    .site-select{border:1px solid #514c4b;border-radius:4px;background:#292627;color:#f6f2f0;padding:8px 10px}
+    .icon-btn{color:#eee}
+    .content{max-width:1320px;padding:32px 36px 64px}
+    .eyebrow{color:#9b2525;font-size:9px;letter-spacing:1.5px}
+    .heading{margin:7px 0 21px}.heading h1{font-size:26px;letter-spacing:-.8px}.heading p{font-size:12px;color:#8c8581}
+    .primary{border-radius:4px;background:#9b2525;padding:10px 14px;font-size:11px}.primary:hover{background:#7d1c1c}
+    .outline{border-color:#ded7d2;border-radius:4px;color:#4f4946;padding:8px 11px}
+    .banner{background:#fbf1ef;border:1px solid #f0dfdc;border-radius:6px;padding:12px 15px;margin-bottom:18px}
+    .banner p{color:#726563;font-size:11px}.banner b{color:#842121}.banner button,.small-link{color:#942525}
+    .stats{gap:11px;margin-bottom:18px}.stat,.card{border-color:#ece7e3;border-radius:7px;box-shadow:var(--shadow)}
+    .stat{padding:16px 17px}.stat-top{color:#8b8380;font-size:10px}.stat-value{font-size:23px;margin:12px 0 7px}.stat-foot{font-size:9px;color:#9a938f}.up{color:#9b2525}
+    .layout{gap:13px}.card{padding:17px 18px;margin-bottom:13px}.card-head{margin-bottom:14px}.card-head h2{font-size:13px}.card-head span{color:#928b87}.small-link{font-size:10px}
+    .table th{background:#f5f2f0;color:#776f6c;border-color:#e9e3df;padding:10px 8px;font-size:10px}
+    .table td{border-color:#f0ece9;padding:11px 8px;font-size:10px}
+    .table tbody tr:hover{background:#fdf9f7}
+    .thumb{border-radius:4px;background:#f7eae5}.thumb.t2{background:#f3efea}.thumb.t3{background:#f2e8e7}
+    .product b{font-size:10px}.product small,.subtle{color:#96908c}
+    .state{border-radius:3px;padding:4px 7px;font-size:9px}.state.green{background:#f8e9e7;color:#922323}.state.orange{background:#fbf1e8;color:#a66543}.state.gray{background:#f1efed;color:#77716e}
+    .order-id{color:#922323}.attention{background:#fcf7f1;border-color:#f0e5d8;border-radius:5px}.attention .a-icon{color:#a66543}
+    .tools{gap:8px}.tool{border-color:#eee9e6;border-radius:5px;padding:10px}.tool-ico{border-radius:5px;background:#f8efec}.tag{border-radius:3px;color:#922323;background:#f8e9e7}
+    .guide{border-color:#ece7e3;border-radius:7px;box-shadow:var(--shadow)}.guide .n{color:#9b2525}.guide p{color:#817a76}
+    .field{border-color:#e6dfdb;border-radius:4px}.switch-row{border-color:#eee9e6}.switch{background:#9b2525}
+    @media(max-width:1000px){.sidebar{width:205px}.main{margin-left:205px;width:calc(100% - 205px)}.content{padding:27px 23px}.topbar{padding:0 23px}}
+    @media(max-width:720px){.sidebar{width:62px;padding:15px 8px}.brand{padding:3px 4px 22px}.brand>div:last-child,.group-title,.nav .label,.nav .badge,.side-bottom>div:last-child{display:none}.nav button{justify-content:center;padding:12px 0}.nav button.active{box-shadow:none}.nav button .ico{font-size:18px}.side-bottom{padding:14px 0;justify-content:center}.main{margin-left:62px;width:calc(100% - 62px)}.topbar{height:55px;padding:0 12px}.content{padding:22px 12px}.heading{align-items:flex-start;gap:12px;flex-direction:column}.heading h1{font-size:23px}.stats{gap:7px}.stat{padding:12px}.stat-value{font-size:19px}.layout,.seo-grid{grid-template-columns:1fr}.guide-grid{grid-template-columns:1fr}.banner{align-items:flex-start}.banner button{display:none}.table th,.table td{padding-left:4px;padding-right:4px;font-size:9px}.product{gap:6px}.thumb{width:27px;height:30px}.right-tools{gap:7px}.site-select{max-width:137px;font-size:9px}}
+    body,.content{background:#fff}
+    .product-placeholder{width:34px;height:36px;border-radius:4px;display:grid;place-items:center;background:#f8e9e7;color:#9b2525;font:600 10px 'DM Sans',sans-serif}
+    .table .empty-row{text-align:center;color:#8b8380;padding:24px}
+    dialog{width:min(520px,calc(100vw - 28px));border:1px solid #e6dfdb;border-radius:8px;padding:0;color:#211e1e;box-shadow:0 24px 80px rgba(25,20,20,.22)}
+    dialog::backdrop{background:rgba(25,20,20,.48);backdrop-filter:blur(2px)}
+    .dialog-head{padding:19px 22px;border-bottom:1px solid #eee9e6;display:flex;align-items:center;justify-content:space-between}
+    .dialog-head h2{font-size:16px;margin:0}.dialog-body{padding:19px 22px}.dialog-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.dialog-field{display:flex;flex-direction:column;gap:6px}.dialog-field.full{grid-column:1/-1}.dialog-field label{font-size:10px;color:#776f6c}.dialog-field input,.dialog-field textarea{width:100%;border:1px solid #e6dfdb;border-radius:4px;padding:10px;font:inherit;font-size:12px}.dialog-field textarea{resize:vertical}.check-field{display:flex;align-items:center;gap:8px;font-size:11px;color:#554f4c}.dialog-actions{display:flex;justify-content:flex-end;gap:8px;padding:0 22px 20px}.dialog-message{font-size:11px;line-height:1.6;color:#942525;margin:0 22px 14px}
+    #login-gate{min-height:100vh;background:#fff;display:grid;place-items:center;padding:24px}.login-card{width:min(420px,100%);padding:36px;border:1px solid #e9e3df;background:#fff;box-shadow:0 10px 35px rgba(35,24,23,.06)}.login-mark{width:42px;height:42px;border-radius:5px;background:#f8e9e7;color:#9b2525;display:grid;place-items:center;font-size:22px;margin-bottom:24px}.login-card h1{font-size:23px;margin:0 0 8px;letter-spacing:-.6px}.login-card>p{font-size:12px;line-height:1.7;color:#827c79;margin:0 0 23px}.login-card .dialog-field{margin-bottom:14px}.login-card .primary{width:100%;margin-top:5px;padding:12px}.login-note{font-size:10px;color:#928b87;line-height:1.6;margin-top:17px}.login-error{font-size:11px;line-height:1.6;color:#9b2525;min-height:18px;margin:0 0 8px}.is-hidden{display:none!important}
+  </style>
+</head>
+<body>
+<section id="login-gate">
+  <form class="login-card" id="login-form">
+    <div class="login-mark">✿</div>
+    <div class="eyebrow" style="margin-bottom:8px">PPIYO STUDIO · ADMIN</div>
+    <h1>관리자 로그인</h1>
+    <p>삐요스튜디오 관리자 계정으로 로그인해 주세요.</p>
+    <div class="dialog-field"><label for="login-email">이메일</label><input id="login-email" type="email" autocomplete="username" required placeholder="관리자 이메일" /></div>
+    <div class="dialog-field"><label for="login-password">비밀번호</label><input id="login-password" type="password" autocomplete="current-password" required placeholder="비밀번호" /></div>
+    <div class="login-error" id="login-error" role="alert"></div>
+    <button class="primary" id="login-submit" type="submit">로그인</button>
+    <div class="login-note">관리자 권한이 등록된 계정만 입장할 수 있습니다. 계정 설정은 Supabase 관리자 화면에서 진행해 주세요.</div>
+  </form>
+</section>
+<div class="shell is-hidden" id="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="mark">✿</div><div><b>ppiyo studio</b><small>ADMIN STUDIO</small></div></div>
+    <div class="group-title">WORKSPACE</div>
+    <nav class="nav">
+      <button class="active" data-page="overview"><span class="ico">⌂</span><span class="label">대시보드</span></button>
+    </nav>
+    <div class="group-title">STORE MANAGEMENT</div>
+    <nav class="nav">
+      <button data-page="products"><span class="ico">▧</span><span class="label">상품 관리</span></button>
+      <button data-page="orders"><span class="ico">▤</span><span class="label">주문 · 배송</span><span class="badge">0</span></button>
+      <button data-page="benefits"><span class="ico">◇</span><span class="label">쿠폰 · 적립금</span></button>
+    </nav>
+    <div class="group-title">GROWTH & SUPPORT</div>
+    <nav class="nav">
+      <button data-page="seo"><span class="ico">⌕</span><span class="label">SEO · 분석 연동</span></button>
+      <button data-page="guide"><span class="ico">▣</span><span class="label">관리자 가이드</span></button>
+    </nav>
+    <div class="side-bottom"><div class="avatar">P</div><div><b>삐요스튜디오</b><small id="side-email">관리자 계정</small></div></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div class="crumb">Workspace&nbsp; / &nbsp;<b id="crumb">대시보드</b></div><div class="right-tools"><select class="site-select" aria-label="사이트 선택"><option>전체 사이트 · 2개</option><option>ppiyostudio.com</option><option>ppiyostudio.com/goods/</option></select><button class="outline" id="logout-button" type="button">로그아웃</button></div></header>
+    <div class="content">
+      <section class="section active" id="overview">
+        <div class="eyebrow">STORE OVERVIEW · 화면 시안</div><div class="heading"><div><h1>안녕하세요, 삐요스튜디오</h1><p>두 사이트의 스토어 운영 현황을 한곳에서 확인하세요.</p></div><button class="primary" onclick="alert('스토어 플랫폼 연결 후 사용할 수 있습니다.')">＋ 상품 등록</button></div>
+        <div class="banner"><div class="banner-icon">🌿</div><p><b>통합 관리자 연결 준비 중</b>　ReadyMag 사이트와 쇼핑몰의 상품·주문 데이터를 연결하면 이곳에서 함께 관리할 수 있어요.</p><button onclick="showPage('guide')">연동 체크리스트 →</button></div>
+        <div class="stats">
+          <div class="stat"><div class="stat-top"><span>오늘 주문</span><span class="stat-icon">▤</span></div><div class="stat-value">0<span style="font-size:13px;margin-left:3px">건</span></div><div class="stat-foot">아직 접수된 주문이 없어요</div></div>
+          <div class="stat"><div class="stat-top"><span>결제 완료 매출</span><span class="stat-icon">₩</span></div><div class="stat-value">₩ 0</div><div class="stat-foot">결제 완료 주문 기준</div></div>
+          <div class="stat"><div class="stat-top"><span>배송 준비</span><span class="stat-icon">♧</span></div><div class="stat-value">0<span style="font-size:13px;margin-left:3px">건</span></div><div class="stat-foot">배송 준비 중인 주문이 없어요</div></div>
+          <div class="stat"><div class="stat-top"><span>오늘 방문자</span><span class="stat-icon">◉</span></div><div class="stat-value" id="ga4-visitors">—</div><div class="stat-foot" id="ga4-status">GA4 보고서 연결 대기 중</div><button class="small-link" id="ga4-refresh" type="button" style="margin-top:8px">새로고침 ↻</button></div>
+        </div>
+        <div class="layout"><div>
+          <div class="card"><div class="card-head"><h2>최근 주문</h2><button class="small-link" onclick="showPage('orders')">전체 주문 보기 →</button></div><table class="table orders"><thead><tr><th>주문 번호</th><th>결제 금액</th><th>상태</th></tr></thead><tbody>
+            <tr><td colspan="3" class="empty-row">아직 주문이 없어요. 새 주문이 들어오면 여기에 표시됩니다.</td></tr>
+          </tbody></table></div>
+          <div class="card"><div class="card-head"><h2>인기 상품</h2><button class="small-link" onclick="showPage('products')">상품 관리 →</button></div><table class="table"><thead><tr><th>상품</th><th>판매</th><th>재고</th></tr></thead><tbody>
+            <tr><td><div class="product"><div class="thumb">🖼</div><div><b>반려동물 포스터</b><small>ppiyostudio.com/goods/</small></div></div></td><td>—</td><td><span class="state gray">재고 미입력</span></td></tr>
+            <tr><td><div class="product"><div class="thumb t2">☕</div><div><b>반려동물 머그컵</b><small>ppiyostudio.com/goods/</small></div></div></td><td>—</td><td><span class="state gray">재고 미입력</span></td></tr>
+          </tbody></table></div>
+        </div><div>
+          <div class="card"><div class="card-head"><h2>오늘 확인할 일</h2><span>1개</span></div><div class="attention"><span class="a-icon">✧</span><div><b>사이트 분석 연동 필요</b><p>GA4를 연결하면 방문부터 구매까지 확인할 수 있어요.</p></div></div><div class="subtle" style="padding:4px 2px">배송 처리 대기 주문 없음</div></div>
+          <div class="card"><div class="card-head"><h2>연동 도구</h2><button class="small-link" onclick="showPage('seo')">설정 보기 →</button></div><div class="tools"><div class="tool"><div class="tool-ico">G</div><div><b>Google Analytics</b><small>연결 필요</small></div><span class="tag">설정</span></div><div class="tool"><div class="tool-ico">N</div><div><b>네이버 검색</b><small>등록 필요</small></div><span class="tag">설정</span></div></div></div>
+        </div></div>
+      </section>
+      <section class="section" id="products"><div class="eyebrow">STORE MANAGEMENT</div><div class="heading"><div><h1>상품 관리</h1><p>상품을 선택해 이름, 가격, 재고와 품절 상태를 수정할 수 있어요.</p></div></div><div class="card"><div class="card-head"><h2>전체 상품 <span id="product-count" style="color:#9b9e97;font-weight:400"> · 불러오는 중</span></h2><button class="outline" onclick="loadProducts()">새로고침 ↻</button></div><div id="product-connection" class="subtle" style="margin:-5px 0 13px">Supabase 연결 상태 확인 중</div><table class="table"><thead><tr><th>상품명</th><th>가격</th><th>재고</th><th>판매 상태</th><th>사이트</th><th>관리</th></tr></thead><tbody id="product-rows"><tr><td colspan="6" class="empty-row">상품을 불러오고 있어요.</td></tr></tbody></table></div></section>
+      <section class="section" id="orders"><div class="eyebrow">STORE MANAGEMENT</div><div class="heading"><div><h1>주문 · 배송</h1><p>접수된 주문을 확인하고 배송 상태를 관리합니다.</p></div></div><div class="stats"><div class="stat"><div class="stat-top">신규 주문</div><div class="stat-value">0건</div><div class="stat-foot">결제 확인 대기</div></div><div class="stat"><div class="stat-top">배송 준비</div><div class="stat-value">0건</div><div class="stat-foot">송장 등록 대기</div></div><div class="stat"><div class="stat-top">배송 중</div><div class="stat-value">0건</div><div class="stat-foot">배송 중 주문</div></div><div class="stat"><div class="stat-top">교환 · 환불 요청</div><div class="stat-value">0건</div><div class="stat-foot">확인할 요청 없음</div></div></div><div class="card"><div class="card-head"><h2>주문 목록</h2></div><table class="table"><thead><tr><th>주문 번호 / 주문자</th><th>주문 상품</th><th>결제 금액</th><th>상태</th><th>사이트</th></tr></thead><tbody><tr><td colspan="5" class="empty-row">아직 주문이 없어요. 주문이 접수되면 여기에 표시됩니다.</td></tr></tbody></table></div></section>
+      <section class="section" id="benefits"><div class="eyebrow">STORE MANAGEMENT</div><div class="heading"><div><h1>쿠폰 · 적립금</h1><p>고객 혜택과 프로모션을 확인합니다.</p></div><button class="primary" onclick="alert('쿠폰 발급 기능은 쇼핑몰 플랫폼 연동이 필요합니다.')">＋ 쿠폰 만들기</button></div><div class="layout"><div class="card"><div class="card-head"><h2>진행 중인 쿠폰</h2><span>현재 2개</span></div><table class="table"><thead><tr><th>쿠폰</th><th>혜택</th><th>사용</th><th>종료일</th></tr></thead><tbody><tr><td><b>첫 구매 환영 쿠폰</b><div class="subtle">신규 가입 고객</div></td><td>3,000원 할인</td><td>18 / 100</td><td>10.31</td></tr><tr><td><b>가을 감사 쿠폰</b><div class="subtle">전체 고객</div></td><td>10% 할인</td><td>42 / 200</td><td>10.15</td></tr></tbody></table></div><div class="card"><div class="card-head"><h2>적립금 현황</h2></div><div class="stat-value">₩ 284,500</div><div class="stat-foot">고객 보유 적립금 합계</div><div class="switch-row"><span>구매 적립금 사용</span><span class="state green">운영 중</span></div><div class="switch-row"><span>구매 금액 적립률</span><b>2%</b></div><div class="switch-row"><span>최소 사용 금액</span><b>₩ 3,000</b></div></div></div></section>
+      <section class="section" id="seo"><div class="eyebrow">GROWTH & INSIGHTS</div><div class="heading"><div><h1>SEO · 분석 연동</h1><p>검색 노출과 방문자·구매 전환 데이터를 설정합니다.</p></div><button class="primary" onclick="alert('저장 전 각 플랫폼의 관리자 권한과 추적 ID 연결이 필요합니다.')">설정 저장</button></div><div class="seo-grid"><div class="card"><div class="card-head"><h2>기본 SEO 설정</h2><span class="state orange">확인 필요</span></div><div class="form-row"><label>사이트 제목</label><input class="field" value="삐요스튜디오 | 작은 기쁨을 만드는 공간" /></div><div class="form-row"><label>사이트 설명</label><textarea class="field" rows="3">일상에 작은 기쁨을 더하는 삐요스튜디오의 오브제와 문구를 만나보세요.</textarea></div><div class="form-row"><label>대표 사이트</label><select class="field"><option>ppiyostudio.com</option><option>ppiyostudio.com/goods/</option></select></div><div class="form-row"><label>OG 이미지</label><button class="outline">이미지 선택 · 1200 × 630 권장</button></div></div><div class="card"><div class="card-head"><h2>검색 도구 · 사이트맵</h2><span>소유권 확인 필요</span></div><div class="switch-row"><span>Google Search Console</span><button class="outline">연결하기</button></div><div class="switch-row"><span>네이버 서치어드바이저</span><button class="outline">연결하기</button></div><div class="switch-row"><span>사이트맵 제출</span><span class="state gray">미제출</span></div><div class="card-head" style="margin:23px 0 12px"><h2>방문 분석 · 전환 추적</h2></div><div class="switch-row"><span>Google Analytics 4</span><button class="outline">연결하기</button></div><div class="switch-row"><span>장바구니 담기 이벤트</span><span class="state gray">미설정</span></div><div class="switch-row"><span>구매 완료 이벤트</span><span class="state gray">미설정</span></div></div></div><div class="card" style="margin-top:0"><div class="card-head"><h2>연동 결과 및 소유권</h2><span class="subtle">삐요스튜디오 계정 연결 후 표시</span></div><p style="font-size:11px;color:#858a81;line-height:1.7;margin:0">각 도구의 소유권을 삐요스튜디오 계정으로 등록한 뒤, 연동 완료 화면과 전환 이벤트 설정 화면을 캡처해 전달합니다.</p></div></section>
+      <section class="section" id="guide"><div class="eyebrow">SUPPORT</div><div class="heading"><div><h1>관리자 가이드</h1><p>상품과 주문 관리, 운영 중인 기능을 빠르게 확인하세요.</p></div><button class="primary" onclick="window.print()">PDF로 저장 ↓</button></div><div class="banner"><div class="banner-icon">📘</div><p><b>삐요스튜디오 관리자 운영 가이드</b>　화면 캡처와 함께 전달할 운영 절차를 이곳에서 확인하고 PDF로 저장할 수 있습니다.</p></div><div class="guide-grid"><article class="guide"><div class="n">01 · 상품</div><h3>상품 등록 · 수정 · 품절 처리</h3><p>상품 관리에서 상품명, 설명, 가격, 옵션과 이미지를 입력합니다. 재고 수량을 0으로 설정하거나 판매 상태를 품절로 바꾸면 구매할 수 없게 처리됩니다.</p><button class="small-link">단계별 안내 보기 →</button></article><article class="guide"><div class="n">02 · 주문</div><h3>주문 확인 · 배송 처리</h3><p>신규 주문의 결제 상태와 배송지를 확인합니다. 상품을 포장한 뒤 택배사와 송장 번호를 입력하면 배송 상태가 갱신됩니다.</p><button class="small-link">단계별 안내 보기 →</button></article><article class="guide"><div class="n">03 · 고객 지원</div><h3>교환 · 환불 처리</h3><p>주문 상세에서 요청 사유와 상품 상태를 확인합니다. 교환 또는 환불 승인 후 회수 및 환불 완료 여부를 주문에 기록합니다.</p><button class="small-link">단계별 안내 보기 →</button></article><article class="guide"><div class="n">04 · 혜택</div><h3>쿠폰 · 적립금 사용</h3><p>쿠폰 관리에서 할인 금액, 적용 대상, 사용 기간과 발급 수량을 설정합니다. 적립금 설정에서 구매 적립률과 사용 기준을 관리합니다.</p><button class="small-link">단계별 안내 보기 →</button></article><article class="guide"><div class="n">05 · 관리자 계정</div><h3>접속 주소 · 계정 이관</h3><p>운영 관리자 접속 주소와 계정은 삐요스튜디오 명의 이메일로 생성하고, 안전한 방법으로 전달합니다. 비밀번호는 직접 설정하도록 초대 링크를 사용합니다.</p><button class="small-link">계정 체크리스트 →</button></article><article class="guide"><div class="n">06 · SEO & 분석</div><h3>SEO · 분석 연동 확인</h3><p>사이트 제목·설명·OG 이미지를 확인합니다. 검색 도구 등록 및 사이트맵 제출, GA4 장바구니·구매 이벤트 상태를 점검합니다.</p><button class="small-link" onclick="showPage('seo')">설정 화면 보기 →</button></article></div><div class="card" style="margin-top:17px"><div class="card-head"><h2>오픈 전 QA 체크리스트</h2><span>진행 현황 2 / 5</span></div><div class="checklist"><div class="check"><span class="dot">✓</span>관리자 접속 주소와 이메일 소유권 확인</div><div class="check"><span class="dot">✓</span>상품 등록·수정·품절 처리 확인</div><div class="check"><span class="dot todo">•</span>테스트 주문 및 배송 상태 변경 확인</div><div class="check"><span class="dot todo">•</span>교환·환불과 쿠폰·적립금 시나리오 점검</div><div class="check"><span class="dot todo">•</span>검색 도구·GA4 이벤트 및 결과 캡처 전달</div></div></div></section>
+    </div>
+  </main>
+</div>
+<dialog id="product-dialog">
+  <form id="product-form">
+    <div class="dialog-head"><h2 id="product-dialog-title">상품 수정</h2><button type="button" class="icon-btn" id="close-product-dialog" aria-label="닫기">×</button></div>
+    <div class="dialog-body"><input type="hidden" id="edit-sku" /><div class="dialog-grid">
+      <div class="dialog-field full"><label for="edit-name">상품명</label><input id="edit-name" required maxlength="120" /></div>
+      <div class="dialog-field"><label for="edit-price">판매 가격 (원)</label><input id="edit-price" type="number" min="0" step="1" required /></div>
+      <div class="dialog-field"><label for="edit-stock">재고 수량</label><input id="edit-stock" type="number" min="0" step="1" placeholder="모르면 비워두기" /></div>
+      <div class="dialog-field full"><label for="edit-description">상품 설명</label><textarea id="edit-description" rows="3"></textarea></div>
+      <div class="dialog-field full"><label for="edit-image">상품 이미지 주소</label><input id="edit-image" type="url" placeholder="https://..." /></div>
+      <label class="check-field full"><input type="checkbox" id="edit-sold-out" /> 품절 처리</label>
+    </div></div>
+    <p class="dialog-message" id="product-save-error" role="alert"></p>
+    <div class="dialog-actions"><button type="button" class="outline" id="cancel-product-edit">취소</button><button class="primary" id="save-product" type="submit">저장</button></div>
+  </form>
+</dialog>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./supabase-config.js"></script>
+<script>
+  const labels={overview:'대시보드',products:'상품 관리',orders:'주문 · 배송',benefits:'쿠폰 · 적립금',seo:'SEO · 분석 연동',guide:'관리자 가이드'};
+  function showPage(id){document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===id));document.getElementById('crumb').textContent=labels[id]||'대시보드';window.scrollTo(0,0)}
+  document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+  const productClient = window.supabase && window.PPIYO_SUPABASE_CONFIG
+    ? window.supabase.createClient(window.PPIYO_SUPABASE_CONFIG.url, window.PPIYO_SUPABASE_CONFIG.publishableKey)
+    : null;
+  const escapeText = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const gate=document.getElementById('login-gate');
+  const appShell=document.getElementById('app-shell');
+  const loginForm=document.getElementById('login-form');
+  const loginError=document.getElementById('login-error');
+  const productDialog=document.getElementById('product-dialog');
+  let isAdmin=false;
+  let productRows=[];
+
+  function showLoginError(message){loginError.textContent=message;}
+  async function enterAdmin(user){
+    if(!productClient){showLoginError('Supabase 연결 설정을 찾지 못했어요.');return false;}
+    const {data:admin,error}=await productClient.from('admin_users').select('user_id').eq('user_id',user.id).maybeSingle();
+    if(error||!admin){
+      await productClient.auth.signOut();
+      showLoginError('로그인 계정에 관리자 권한이 없어요. Supabase에서 관리자 권한을 먼저 등록해 주세요.');
+      return false;
+    }
+    isAdmin=true;
+    gate.classList.add('is-hidden');
+    appShell.classList.remove('is-hidden');
+    document.getElementById('side-email').textContent=user.email||'관리자 계정';
+    await loadProducts();
+    await loadGa4Metrics();
+    return true;
+  }
+  loginForm.addEventListener('submit',async event=>{
+    event.preventDefault();
+    if(!productClient){showLoginError('Supabase 설정을 불러오지 못했어요.');return;}
+    const button=document.getElementById('login-submit');
+    button.disabled=true;button.textContent='로그인 중…';showLoginError('');
+    const {data,error}=await productClient.auth.signInWithPassword({
+      email:document.getElementById('login-email').value.trim(),
+      password:document.getElementById('login-password').value
+    });
+    if(error){showLoginError('로그인 정보를 확인해 주세요.');}
+    else if(data.user){await enterAdmin(data.user);}
+    button.disabled=false;button.textContent='로그인';
+  });
+  document.getElementById('logout-button').addEventListener('click',async()=>{
+    if(productClient) await productClient.auth.signOut();
+    isAdmin=false;appShell.classList.add('is-hidden');gate.classList.remove('is-hidden');
+    document.getElementById('login-password').value='';showLoginError('');
+  });
+  async function loadGa4Metrics(){
+    const value=document.getElementById('ga4-visitors');
+    const status=document.getElementById('ga4-status');
+    if(!productClient||!isAdmin)return;
+    status.textContent='GA4에서 오늘 방문자 수를 불러오는 중…';
+    const {data,error}=await productClient.functions.invoke('ga4-visits');
+    if(error||!data||data.error){
+      value.textContent='—';
+      status.textContent=(data&&data.message)||'GA4 연결 설정이 필요해요';
+      return;
+    }
+    value.textContent=Number(data.activeUsers||0).toLocaleString('ko-KR');
+    status.textContent=`오늘 방문자 · 페이지 조회 ${Number(data.pageViews||0).toLocaleString('ko-KR')}회`;
+  }
+  document.getElementById('ga4-refresh').addEventListener('click',loadGa4Metrics);
+  async function loadProducts(){
+    const status=document.getElementById('product-connection');
+    const body=document.getElementById('product-rows');
+    const count=document.getElementById('product-count');
+    if(!productClient||!isAdmin){return;}
+    status.textContent='Supabase에서 상품을 불러오고 있어요.';
+    const {data,error}=await productClient.from('products').select('sku,name,price,stock,stock_confirmed,is_sold_out,description,image_url').order('sku');
+    if(error){status.textContent='상품을 불러오지 못했어요. 상품 동기화 SQL 실행 여부를 확인해 주세요.';body.innerHTML='<tr><td colspan="6" class="empty-row">Supabase 연결 또는 권한을 확인해 주세요.</td></tr>';count.textContent=' · 확인 필요';return;}
+    productRows=data||[];
+    count.textContent=` · ${productRows.length}개`;
+    status.textContent=`Supabase 연결됨 · ${productRows.length}개 상품`;
+    if(!productRows.length){body.innerHTML='<tr><td colspan="6" class="empty-row">등록된 상품이 없어요. 상품 동기화 SQL을 먼저 실행해 주세요.</td></tr>';return;}
+    body.innerHTML=productRows.map(p=>{
+      const stockLabel=p.stock_confirmed ? (p.stock===0?'0개':`${p.stock}개`) : '미입력';
+      const state=p.is_sold_out?'품절':'판매 중';
+      const stateClass=p.is_sold_out?'gray':'green';
+      return `<tr><td><div class="product"><div class="product-placeholder">${escapeText(p.sku || '상품')}</div><div><b>${escapeText(p.name)}</b><small>상품 코드 ${escapeText(p.sku || '-')}</small></div></div></td><td>₩ ${Number(p.price||0).toLocaleString('ko-KR')}</td><td>${escapeText(stockLabel)}</td><td><span class="state ${stateClass}">${state}</span></td><td class="subtle">쇼핑몰 · /goods/</td><td><button class="outline edit-product" data-sku="${escapeText(p.sku)}">수정</button></td></tr>`;
+    }).join('');
+    body.querySelectorAll('.edit-product').forEach(button=>button.addEventListener('click',()=>openProductEditor(button.dataset.sku)));
+  }
+  function openProductEditor(sku){
+    const p=productRows.find(row=>row.sku===sku);
+    if(!p)return;
+    document.getElementById('edit-sku').value=p.sku;
+    document.getElementById('edit-name').value=p.name||'';
+    document.getElementById('edit-price').value=p.price??0;
+    document.getElementById('edit-stock').value=p.stock_confirmed&&p.stock!==null?p.stock:'';
+    document.getElementById('edit-description').value=p.description||'';
+    document.getElementById('edit-image').value=p.image_url||'';
+    document.getElementById('edit-sold-out').checked=Boolean(p.is_sold_out);
+    document.getElementById('product-save-error').textContent='';
+    productDialog.showModal();
+  }
+  document.getElementById('product-form').addEventListener('submit',async event=>{
+    event.preventDefault();
+    if(!isAdmin||!productClient)return;
+    const saveButton=document.getElementById('save-product');
+    const stockText=document.getElementById('edit-stock').value.trim();
+    const stockValue=stockText===''?null:Number(stockText);
+    const priceValue=Number(document.getElementById('edit-price').value);
+    if(!Number.isInteger(priceValue)||priceValue<0||(stockValue!==null&&(!Number.isInteger(stockValue)||stockValue<0))){
+      document.getElementById('product-save-error').textContent='가격과 재고는 0 이상의 정수로 입력해 주세요.';return;
+    }
+    saveButton.disabled=true;saveButton.textContent='저장 중…';
+    const {error}=await productClient.from('products').update({
+      name:document.getElementById('edit-name').value.trim(),
+      price:priceValue,
+      stock:stockValue,
+      stock_confirmed:stockValue!==null,
+      description:document.getElementById('edit-description').value.trim(),
+      image_url:document.getElementById('edit-image').value.trim(),
+      is_sold_out:document.getElementById('edit-sold-out').checked,
+      updated_at:new Date().toISOString()
+    }).eq('sku',document.getElementById('edit-sku').value);
+    saveButton.disabled=false;saveButton.textContent='저장';
+    if(error){document.getElementById('product-save-error').textContent='저장하지 못했어요. 관리자 권한과 Supabase 정책을 확인해 주세요.';return;}
+    productDialog.close();
+    await loadProducts();
+  });
+  document.getElementById('close-product-dialog').addEventListener('click',()=>productDialog.close());
+  document.getElementById('cancel-product-edit').addEventListener('click',()=>productDialog.close());
+  async function restoreSession(){
+    if(!productClient){showLoginError('Supabase 연결 설정을 찾지 못했어요.');return;}
+    const {data,error}=await productClient.auth.getSession();
+    if(error){showLoginError('로그인 상태를 확인하지 못했어요. 다시 로그인해 주세요.');return;}
+    if(data.session?.user) await enterAdmin(data.session.user);
+  }
+  restoreSession();
+</script>
+</body>
+</html>

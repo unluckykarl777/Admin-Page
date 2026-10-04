@@ -1,0 +1,7 @@
+.vercel/
+node_modules/
+.env
+.env.*
+supabase/functions/.env
+service-account*.json
+*-service-account*.json
