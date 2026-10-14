@@ -15,6 +15,12 @@
 
 Vercel은 관리자 페이지만 올립니다. Figma로 만든 쇼핑몰과 관리자 페이지가 같은 상품을 보려면 양쪽 코드가 같은 Supabase 프로젝트의 `products` 테이블을 읽고 수정해야 합니다. Figma 사이트는 별도로 다시 게시해야 하며, Figma 사이트 주소만 이 프로젝트에 연결한다고 상품 데이터가 자동으로 공유되지는 않습니다.
 
+## 토스 결제 주문 저장
+
+`supabase/functions/make-server-41917659/index.ts`는 토스 결제를 서버에서 승인한 뒤 기존 관리자 `orders`/`order_items` 스키마에 저장합니다. Supabase SQL Editor에서 `supabase-toss-orders-migration.sql`을 한 번 실행하고, Edge Function 비밀 설정에 `TOSS_SECRET_KEY`를 추가한 뒤 `supabase functions deploy make-server-41917659 --project-ref qecylsttsiaizunbzqdx`로 기존 함수를 업데이트하세요. `SUPABASE_URL`과 `SUPABASE_SERVICE_ROLE_KEY`는 브라우저가 아니라 서버 함수에서만 사용합니다.
+
+쇼핑몰 결제 코드는 기존 함수 `https://qecylsttsiaizunbzqdx.supabase.co/functions/v1/make-server-41917659`의 결제 주문 API를 사용해야 합니다. 서버는 상품 SKU를 관리자 `products` 표에서 찾아 현재 가격을 계산합니다. 관리자 주문 화면은 기존 Supabase 로그인/RLS 경로로 `paid` 주문을 표시합니다.
+
 ## GA4 방문자 보고서
 
 `supabase/functions/ga4-visits/index.ts`는 GA4 보고서를 읽는 Supabase Edge Function입니다. 이 함수는 Vercel에 배포되지 않습니다. Supabase에 함수를 배포하고 `GA4_SERVICE_ACCOUNT_JSON` 비밀 설정을 해야 합니다. GA4 속성 ID `557079294`는 함수 코드에 기본값으로 들어 있습니다. Google 서비스 계정 JSON은 Git 저장소에 넣지 마세요.
