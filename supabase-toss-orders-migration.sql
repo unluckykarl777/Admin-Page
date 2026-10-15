@@ -14,7 +14,10 @@ alter table public.orders
   add column if not exists customer_phone text not null default '',
   add column if not exists shipping_address text not null default '',
   add column if not exists shipping_address_detail text not null default '',
-  add column if not exists shipping_memo text not null default '';
+  add column if not exists shipping_memo text not null default '',
+  add column if not exists fulfillment_status text not null default 'new',
+  add column if not exists tracking_carrier text not null default '',
+  add column if not exists tracking_number text not null default '';
 
 alter table public.order_items
   add column if not exists selected_size text;
@@ -64,16 +67,17 @@ begin
   end if;
 
   insert into public.orders (
-    order_number, order_name, total_amount, toss_payment_key,
-    payment_status, fulfillment_status, method, approved_at,
-    customer_name, customer_email, customer_phone,
-    shipping_address, shipping_address_detail, shipping_memo
+    order_number, order_name, total_price, status, toss_payment_key,
+    method, approved_at, customer_name, phone, customer_phone,
+    address, shipping_address, shipping_address_detail, shipping_memo,
+    fulfillment_status
   ) values (
-    p_order_id, p_order_name, p_amount, p_payment_key,
-    'paid', 'new', coalesce(p_method, ''), p_approved_at,
-    p_customer_name, coalesce(p_customer_email, ''), coalesce(p_customer_phone, ''),
-    coalesce(p_shipping_address, ''), coalesce(p_shipping_address_detail, ''),
-    coalesce(p_shipping_memo, '')
+    p_order_id, p_order_name, p_amount, 'paid', p_payment_key,
+    coalesce(p_method, ''), p_approved_at, p_customer_name,
+    coalesce(p_customer_phone, ''), coalesce(p_customer_phone, ''),
+    coalesce(p_shipping_address, ''), coalesce(p_shipping_address, ''),
+    coalesce(p_shipping_address_detail, ''), coalesce(p_shipping_memo, ''),
+    'new'
   )
   on conflict (order_number) do nothing
   returning id into saved_order_id;
@@ -83,8 +87,8 @@ begin
       from public.orders
       where order_number = p_order_id
         and toss_payment_key = p_payment_key
-        and total_amount = p_amount
-        and payment_status = 'paid';
+        and total_price = p_amount
+        and status = 'paid';
     if saved_order_id is null then
       raise exception 'Existing order does not match the verified payment';
     end if;
@@ -92,7 +96,7 @@ begin
   end if;
 
   insert into public.order_items (
-    order_id, product_id, product_name, quantity, unit_price, selected_size
+    order_id, product_id, product_name, quantity, price, selected_size
   )
   select
     saved_order_id,

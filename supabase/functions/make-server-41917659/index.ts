@@ -182,7 +182,7 @@ const findSavedOrder = async (orderId: string) => {
   const { data, error } = await database()
     .from("orders")
     .select(
-      "id, order_number, order_name, total_amount, toss_payment_key, payment_status, method, approved_at",
+      "id, order_number, order_name, total_price, toss_payment_key, status, method, approved_at",
     )
     .eq("order_number", orderId)
     .maybeSingle()
@@ -322,8 +322,8 @@ app.post(`${SERVER_PREFIX}/payments/confirm`, async (c) => {
   if (alreadySaved) {
     if (
       alreadySaved.toss_payment_key !== paymentKey ||
-      alreadySaved.total_amount !== amount ||
-      alreadySaved.payment_status !== "paid"
+      alreadySaved.total_price !== amount ||
+      alreadySaved.status !== "paid"
     ) {
       throw new HttpError(409, "이미 처리된 주문 정보와 일치하지 않습니다.")
     }
@@ -331,7 +331,7 @@ app.post(`${SERVER_PREFIX}/payments/confirm`, async (c) => {
       order: {
         orderId: alreadySaved.order_number,
         orderName: alreadySaved.order_name,
-        amount: alreadySaved.total_amount,
+        amount: alreadySaved.total_price,
         paymentStatus: "DONE",
         method: alreadySaved.method,
         approvedAt: alreadySaved.approved_at,

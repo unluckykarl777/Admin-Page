@@ -17,7 +17,7 @@ Vercel은 관리자 페이지만 올립니다. Figma로 만든 쇼핑몰과 관�
 
 ## 토스 결제 주문 저장
 
-`supabase/functions/make-server-41917659/index.ts`는 토스 결제를 서버에서 승인한 뒤 기존 관리자 `orders`/`order_items` 스키마에 저장합니다. Supabase SQL Editor에서 `supabase-toss-orders-migration.sql`을 한 번 실행하고, Edge Function 비밀 설정에 `TOSS_SECRET_KEY`를 추가한 뒤 `supabase functions deploy make-server-41917659 --project-ref qecylsttsiaizunbzqdx`로 기존 함수를 업데이트하세요. `SUPABASE_URL`과 `SUPABASE_SERVICE_ROLE_KEY`는 브라우저가 아니라 서버 함수에서만 사용합니다.
+`supabase/functions/make-server-41917659/index.ts`는 토스 결제를 서버에서 승인한 뒤 기존 `orders`/`order_items` 테이블에 저장합니다. 실제 프로젝트 스키마의 `orders.total_price/status`와 `order_items.price`를 사용합니다. Supabase SQL Editor에서 `supabase-toss-orders-migration.sql`을 실행하고, Edge Function 비밀 설정에 `TOSS_SECRET_KEY`를 추가한 뒤 기존 함수를 업데이트하세요. `SUPABASE_URL`과 `SUPABASE_SERVICE_ROLE_KEY`는 브라우저가 아니라 서버 함수에서만 사용합니다.
 
 쇼핑몰 결제 코드는 기존 함수 `https://qecylsttsiaizunbzqdx.supabase.co/functions/v1/make-server-41917659`의 결제 주문 API를 사용해야 합니다. 서버는 상품 SKU를 관리자 `products` 표에서 찾아 현재 가격을 계산합니다. 관리자 주문 화면은 기존 Supabase 로그인/RLS 경로로 `paid` 주문을 표시합니다.
 
