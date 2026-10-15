@@ -377,7 +377,7 @@
     const currentCoupon=couponRows.find(c=>c.id===id);
     const payload={name:document.getElementById('coupon-name').value.trim(),discount_type:type,discount_value:value,usage_limit:limit,starts_at:starts?`${starts}T00:00:00Z`:null,ends_at:ends?`${ends}T23:59:59Z`:null,is_active:currentCoupon?currentCoupon.is_active:true};
     const result=id?await productClient.from('coupons').update(payload).eq('id',id):await productClient.from('coupons').insert(payload);
-    if(result.error){document.getElementById('coupon-error').textContent='저장하지 못했어요. SQL 설정과 관리자 권한을 확인해 주세요.';return;}
+    if(result.error){document.getElementById('coupon-error').textContent=`저장 실패: ${result.error.message}`;return;}
     couponDialog.close();await loadBenefits();
   });
   async function toggleCoupon(id){const c=couponRows.find(x=>x.id===id);if(!c)return;const {error}=await productClient.from('coupons').update({is_active:!c.is_active}).eq('id',id);if(error)alert('쿠폰 상태를 바꾸지 못했어요.');else await loadBenefits();}
