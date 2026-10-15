@@ -331,7 +331,7 @@
         const discount=c.discount_type==='percent'?`${c.discount_value}% 할인`:`${won(c.discount_value)} 할인`;
         const period=[dateOnly(c.starts_at),dateOnly(c.ends_at)].filter(Boolean).join(' ~ ')||'기간 제한 없음';
         const limit=c.usage_limit?`최대 ${Number(c.usage_limit).toLocaleString('ko-KR')}회`:'횟수 제한 없음';
-        return `<tr><td><b>${escapeText(c.name)}</b></td><td>${discount}</td><td>${escapeText(period)}<div class="subtle">${escapeText(limit)}</div></td><td><span class="state ${c.is_active?'green':'gray'}">${c.is_active?'사용 중':'중지'}</span></td><td><button class="outline coupon-edit" data-id="${c.id}">수정</button> <button class="outline coupon-toggle" data-id="${c.id}">${c.is_active?'중지':'사용'}</button> <button class="outline coupon-delete" data-id="${c.id}">삭제</button></td></tr>`;
+        return `<tr><td><b>${escapeText(c.name)}</b><div class="subtle">코드: ${escapeText(c.code||'')}</div></td><td>${discount}</td><td>${escapeText(period)}<div class="subtle">${escapeText(limit)}</div></td><td><span class="state ${c.is_active?'green':'gray'}">${c.is_active?'사용 중':'중지'}</span></td><td><button class="outline coupon-edit" data-id="${c.id}">수정</button> <button class="outline coupon-toggle" data-id="${c.id}">${c.is_active?'중지':'사용'}</button> <button class="outline coupon-delete" data-id="${c.id}">삭제</button></td></tr>`;
       }).join(''):'<tr><td colspan="5" class="empty-row">등록된 쿠폰이 없어요. ＋ 쿠폰 만들기로 추가하세요.</td></tr>';
       couponBody.querySelectorAll('.coupon-edit').forEach(b=>b.onclick=()=>openCoupon(b.dataset.id));
       couponBody.querySelectorAll('.coupon-toggle').forEach(b=>b.onclick=()=>toggleCoupon(b.dataset.id));
@@ -375,7 +375,7 @@
     const starts=document.getElementById('coupon-start').value,ends=document.getElementById('coupon-end').value;
     if(starts&&ends&&starts>ends){document.getElementById('coupon-error').textContent='종료 날짜를 시작 날짜보다 뒤로 설정해 주세요.';return;}
     const currentCoupon=couponRows.find(c=>c.id===id);
-    const payload={name:document.getElementById('coupon-name').value.trim(),discount_type:type,discount_value:value,usage_limit:limit,starts_at:starts?`${starts}T00:00:00Z`:null,ends_at:ends?`${ends}T23:59:59Z`:null,is_active:currentCoupon?currentCoupon.is_active:true};
+    const payload={code:currentCoupon?.code||`PPIYO-${crypto.randomUUID().replaceAll('-','').slice(0,8).toUpperCase()}`,name:document.getElementById('coupon-name').value.trim(),discount_type:type,discount_value:value,usage_limit:limit,starts_at:starts?`${starts}T00:00:00Z`:null,ends_at:ends?`${ends}T23:59:59Z`:null,is_active:currentCoupon?currentCoupon.is_active:true};
     const result=id?await productClient.from('coupons').update(payload).eq('id',id):await productClient.from('coupons').insert(payload);
     if(result.error){document.getElementById('coupon-error').textContent=`저장 실패: ${result.error.message}`;return;}
     couponDialog.close();await loadBenefits();

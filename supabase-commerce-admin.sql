@@ -1,6 +1,20 @@
 -- 관리자용 쿠폰, 적립금, 회원 등급 기준, SEO 설정 저장소
 -- Supabase Dashboard > SQL Editor에서 한 번 실행하세요.
 
+-- 기존 coupons 테이블에도 관리자 화면에서 쓰는 컬럼을 보장합니다.
+alter table public.coupons
+  add column if not exists name text not null default '',
+  add column if not exists discount_type text not null default 'fixed',
+  add column if not exists discount_value integer not null default 1
+    check (discount_value > 0),
+  add column if not exists usage_limit integer,
+  add column if not exists starts_at timestamptz,
+  add column if not exists ends_at timestamptz,
+  add column if not exists is_active boolean not null default true,
+  add column if not exists created_at timestamptz not null default now();
+
+notify pgrst, 'reload schema';
+
 create table if not exists public.member_tiers (
   id uuid primary key default gen_random_uuid(),
   name text not null,

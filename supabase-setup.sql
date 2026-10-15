@@ -65,6 +65,7 @@ create table if not exists public.order_items (
 
 create table if not exists public.coupons (
   id uuid primary key default gen_random_uuid(),
+  code text not null unique,
   name text not null,
   discount_type text not null check (discount_type in ('fixed','percent')),
   discount_value integer not null check (discount_value > 0),
