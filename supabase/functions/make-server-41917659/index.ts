@@ -199,6 +199,7 @@ app.post(`${SERVER_PREFIX}/payments/orders`, async (c) => {
   const body = (await readJson(c)) as {
     items?: Array<{
       id?: unknown
+      sku?: unknown
       quantity?: unknown
       selectedSize?: unknown
     }>
@@ -222,7 +223,9 @@ app.post(`${SERVER_PREFIX}/payments/orders`, async (c) => {
   }
 
   const requestedItems = body.items.map((requestedItem) => {
-    const id = normalizeText(requestedItem.id, 64)
+    // Checkout currently sends the product SKU as `sku`; accept both names
+    // so the server remains compatible with older clients that send `id`.
+    const id = normalizeText(requestedItem.id ?? requestedItem.sku, 64)
     const quantity = Number(requestedItem.quantity)
     if (
       !id ||
